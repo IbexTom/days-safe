@@ -8,15 +8,23 @@
     body {
       margin: 0;
       height: 100vh;
+
+      /* Background layers:
+         1) Dark overlay for readability
+         2) Ibex logo watermark
+         3) Base charcoal color
+      */
       background:
         linear-gradient(
-          rgba(0,0,0,0.75),
-          rgba(0,0,0,0.75)
+          rgba(0,0,0,0.78),
+          rgba(0,0,0,0.78)
         ),
-        url("ibex-logo.png") center / 60% no-repeat,
-        #222;
+        url("./ibex-logo.png") center / 55% no-repeat,
+        #111;
+
       color: white;
       font-family: Helvetica, Arial, sans-serif;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,13 +34,20 @@
 
     h1 {
       font-size: 64px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       letter-spacing: 2px;
     }
 
     #days {
       font-size: 140px;
       font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      font-size: 28px;
+      letter-spacing: 1px;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -40,18 +55,16 @@
 <body>
   <h1>Days Safe</h1>
   <div id="days"></div>
+  <div class="tagline">Safety Starts Before the Machine Does</div>
 
   <script>
-    // === CONFIGURATION ===
     const lastIncident = new Date("2024-01-18");
 
-    // Fixed-date holidays (MM-DD)
     const holidays = [
       "01-01", // New Year's Day
       "07-04", // Independence Day
-      "12-25"  // Christmas
+      "12-25"  // Christmas Day
     ];
-    // === END CONFIGURATION ===
 
     function isHoliday(date) {
       const mmdd = date.toISOString().slice(5,10);
