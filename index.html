@@ -2,23 +2,56 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Working Days Safe</title>
+  <title>Days Safe</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background:
+        linear-gradient(
+          rgba(0,0,0,0.75),
+          rgba(0,0,0,0.75)
+        ),
+        url("ibex-logo.png") center / 60% no-repeat,
+        #222;
+      color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    #days {
+      font-size: 140px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body style="background:#222; color:white; text-align:center; font-family:Helvetica, Arial, sans-serif; margin-top:15%;">
-  <h1 style="font-size:60px;">Working Days Safe</h1>
-  <h2 id="days" style="font-size:120px;"></h2>
+
+<body>
+  <h1>Days Safe</h1>
+  <div id="days"></div>
 
   <script>
-    const lastIncident = new Date("2025-09-14"); // CHANGE THIS DATE
+    // === CONFIGURATION ===
+    const lastIncident = new Date("2024-01-18");
 
+    // Fixed-date holidays (MM-DD)
     const holidays = [
       "01-01", // New Year's Day
       "07-04", // Independence Day
-      "12-25", // Christmas Day
-      "05-26", // Memorial Day 2025
-      "09-01", // Labor Day 2025
-      "11-27"  // Thanksgiving 2025
+      "12-25"  // Christmas
     ];
+    // === END CONFIGURATION ===
 
     function isHoliday(date) {
       const mmdd = date.toISOString().slice(5,10);
@@ -30,7 +63,9 @@
       const date = new Date(from);
       while (date < to) {
         const day = date.getDay();
-        if (day !== 0 && day !== 6 && !isHoliday(date)) count++;
+        if (day !== 0 && day !== 6 && !isHoliday(date)) {
+          count++;
+        }
         date.setDate(date.getDate() + 1);
       }
       return count;
