@@ -1,79 +1,97 @@
-<div class="container">
-  <h1>Days Safe</h1>
-  <div id="days"></div>
-  <div class="tagline">Safety Starts Before the Machine Does</div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Days Safe</title>
 
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
 
-<style>
-  body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #111;
-    color: white;
-    font-family: Helvetica, Arial, sans-serif;
-    text-align: center;
-  }
+    /* Logo background */
+    body {
+      background:
+        linear-gradient(
+          rgba(0,0,0,0.78),
+          rgba(0,0,0,0.78)
+        ),
+        url("ibex-logo.png") center center / 40% no-repeat,
+        #111;
+    }
 
-  .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-  }
+    /* Centered content container */
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+    }
 
-  h1 {
-    font-size: 64px;
-    letter-spacing: 3px;
-    margin: 0 0 10px 0;
-  }
+    h1 {
+      font-size: 72px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+    }
 
-  #days {
-    font-size: 180px;
-    font-weight: 900;
-    line-height: 1;
-    margin: 0;
-  }
+    #days {
+      font-size: 240px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0;
+      white-space: nowrap;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    }
 
-  .tagline {
-    font-size: 28px;
-    margin-top: 10px;
-    opacity: 0.85;
-  }
-</style>
-
+    .tagline {
+      font-size: 34px;
+      letter-spacing: 1.2px;
+      margin-top: 12px;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Days Safe</h1>
-  <div id="days"></div>
-  <div class="tagline">Safety Starts Before the Machine Does</div>
+  <div class="container">
+    <h1>Days Safe</h1>
+    <div id="days"></div>
+    <div class="tagline">Safety Starts Before the Machine Does</div>
+  </div>
 
   <script>
+    // Last incident date (YYYY-MM-DD)
     const lastIncident = new Date("2024-01-18");
 
-    const holidays = [
-      "01-01", // New Year's Day
-      "07-04", // Independence Day
-      "12-25"  // Christmas Day
-    ];
+    // Fixed holidays to exclude (MM-DD)
+    const holidays = ["01-01", "07-04", "12-25"];
 
     function isHoliday(date) {
-      const mmdd = date.toISOString().slice(5,10);
+      const mmdd = date.toISOString().slice(5, 10);
       return holidays.includes(mmdd);
     }
 
     function countWorkdays(from, to) {
       let count = 0;
-      const date = new Date(from);
-      while (date < to) {
-        const day = date.getDay();
-        if (day !== 0 && day !== 6 && !isHoliday(date)) {
+      const d = new Date(from);
+
+      while (d < to) {
+        const day = d.getDay();
+        if (day !== 0 && day !== 6 && !isHoliday(d)) {
           count++;
         }
-        date.setDate(date.getDate() + 1);
+        d.setDate(d.getDate() + 1);
       }
       return count;
     }
