@@ -22,22 +22,35 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden; /* critical */
   }
 
   h1 {
-    font-size: 120px;        /* Bigger label, but still secondary */
-    margin-bottom: -10px;    /* Pull it tighter to the number */
+    font-size: 110px;
+    margin-bottom: -10px;
     letter-spacing: 6px;
     font-weight: 800;
     text-transform: uppercase;
   }
 
   #days {
-    font-size: 520px;        /* THIS is the hammer */
+    font-size: 260px;       /* SAFE size */
     font-weight: 900;
-    line-height: 0.82;       /* Critical to prevent overflow */
+    line-height: 1;
+    transform: scale(2);    /* THIS is the visual doubling */
+    transform-origin: center;
     margin: 0;
-    text-shadow: 0
+    white-space: nowrap;
+    text-shadow: 0 14px 40px rgba(0,0,0,0.75);
+  }
+
+  .tagline {
+    font-size: 48px;
+    margin-top: 40px;       /* compensate for scaling */
+    letter-spacing: 2px;
+    opacity: 0.9;
+  }
+</style>
 
 
 </head>
