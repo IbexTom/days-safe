@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Working Days Safe</title>
+</head>
+<body style="background:#222; color:white; text-align:center; font-family:Helvetica, Arial, sans-serif; margin-top:15%;">
+  <h1 style="font-size:60px;">Working Days Safe</h1>
+  <h2 id="days" style="font-size:120px;"></h2>
+
+  <script>
+    const lastIncident = new Date("2025-09-14"); // CHANGE THIS DATE
+
+    const holidays = [
+      "01-01", // New Year's Day
+      "07-04", // Independence Day
+      "12-25", // Christmas Day
+      "05-26", // Memorial Day 2025
+      "09-01", // Labor Day 2025
+      "11-27"  // Thanksgiving 2025
+    ];
+
+    function isHoliday(date) {
+      const mmdd = date.toISOString().slice(5,10);
+      return holidays.includes(mmdd);
+    }
+
+    function countWorkdays(from, to) {
+      let count = 0;
+      const date = new Date(from);
+      while (date < to) {
+        const day = date.getDay();
+        if (day !== 0 && day !== 6 && !isHoliday(date)) count++;
+        date.setDate(date.getDate() + 1);
+      }
+      return count;
+    }
+
+    const today = new Date();
+    document.getElementById("days").innerText =
+      countWorkdays(lastIncident, today);
+  </script>
+</body>
+</html>
