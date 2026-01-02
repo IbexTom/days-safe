@@ -1,49 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Days Safe</title>
+<div class="container">
+  <h1>Days Safe</h1>
+  <div id="days"></div>
+  <div class="tagline">Safety Starts Before the Machine Does</div>
+</div>
+
 
 <style>
   body {
     margin: 0;
+    width: 100vw;
     height: 100vh;
-    background:
-      linear-gradient(
-        rgba(0,0,0,0.8),
-        rgba(0,0,0,0.8)
-      ),
-      url("ibex-logo.png") center / 42% no-repeat,
-      #111;
+    background: #111;
     color: white;
     font-family: Helvetica, Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    overflow: hidden;
   }
 
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(-1%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
   }
 
   h1 {
-    font-size: 72px;
-    letter-spacing: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0 0 6px 0;
+    font-size: 64px;
+    letter-spacing: 3px;
+    margin: 0 0 10px 0;
   }
 
   #days {
-    font-size: 220px;
+    font-size: 180px;
     font-weight: 900;
-    lin
+    line-height: 1;
+    margin: 0;
+  }
 
+  .tagline {
+    font-size: 28px;
+    margin-top: 10px;
+    opacity: 0.85;
+  }
+</style>
 
 </head>
 
